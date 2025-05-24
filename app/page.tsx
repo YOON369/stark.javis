@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { saveToSupabase } from './actions/saveLoop' // ✅ 상대 경로 확인 필요
 
 export default function Home() {
   const [concept, setConcept] = useState('')
@@ -40,6 +41,21 @@ export default function Home() {
       <pre className="mt-6 whitespace-pre-wrap bg-[#1a1a1a] p-4 rounded-lg text-[#dcdcdc] leading-relaxed">
         {result}
       </pre>
+
+      {/* ✅ Supabase 저장 버튼 */}
+      <button
+        onClick={async () => {
+          const res = await saveToSupabase({ concept, declaration: result })
+          if (res.success) {
+            alert('✅ Supabase에 저장 완료!')
+          } else {
+            alert('❌ 저장 실패: ' + res.error?.message)
+          }
+        }}
+        className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition duration-150"
+      >
+        Supabase에 저장하기
+      </button>
     </main>
   )
 }
