@@ -20,21 +20,26 @@ export default function Home() {
   }
 
   return (
-    <main className="p-6 font-mono max-w-xl mx-auto">
-      <h1 className="text-xl font-bold mb-4">🧠 STARK Genius Loop</h1>
+    <main className="min-h-screen bg-[#0e0e0e] text-[#e0e0e0] p-6 font-mono max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">🧠 STARK Genius Loop</h1>
+
       <input
         value={concept}
         onChange={(e) => setConcept(e.target.value)}
         placeholder="Enter today’s concept"
-        className="w-full p-2 border border-gray-300"
+        className="w-full p-3 text-lg bg-[#1a1a1a] text-[#f0f0f0] border border-[#444] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#555]"
       />
+
       <button
         onClick={handleSubmit}
-        className="mt-4 bg-black text-white px-4 py-2"
+        className="mt-4 bg-[#333] hover:bg-[#444] text-white px-5 py-2 rounded-lg transition duration-150"
       >
         {loading ? 'Loading...' : 'Run Genius Loop'}
       </button>
-      <pre className="mt-6 whitespace-pre-wrap">{result}</pre>
+
+      <pre className="mt-6 whitespace-pre-wrap bg-[#1a1a1a] p-4 rounded-lg text-[#dcdcdc] leading-relaxed">
+        {result}
+      </pre>
     </main>
   )
 }
